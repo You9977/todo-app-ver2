@@ -1,0 +1,11 @@
+<div class="container">
+  <%= form_with model: @task do |f|  %>
+  <%= f.label :title, "title:" %>
+  <%= f.text_field :task %>
+  <%= f.label :task, "detail:" %>
+  <%= f.text_field :deadline %>
+  <%= f.label :deadline, "deadline:" %>
+  <%= f.date_field :deadline %>
+  <%= f.submit :create %>
+  <% end %>
+</div>
