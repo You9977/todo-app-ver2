@@ -1,4 +1,11 @@
-<div class="container">
-  <%= @task.title %>
-  <%= @task.task %>
+<div class="jumbotron container w-80">
+  <h4 class="display-5"><%= @task.title %></h4>
+  <hr class="my-4">
+  <div class="h-25 p-3" style="background-color: #eee;">
+    <h5 class="lead">詳細：</h5><br>
+    <p class="lead"><%= @task.detail %></p>
+  </div>
+  <hr class="my-4">
+  <p class="lead"><%= "期限: #{l @task.deadline, format: :date}" %></p>
+  <%= link_to '編集', edit_task_path, class: 'btn btn-primary' %>
 </div>

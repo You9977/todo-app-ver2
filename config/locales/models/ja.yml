@@ -1,0 +1,22 @@
+ja:
+  activerecord:
+    models:
+      task:
+    attributes:
+      task:
+        title: Todo名
+        detail: 詳細
+        deadline: 締切り
+    errors:
+      models:
+        task:
+          attributes:
+            title:
+              format: '%{message}'
+              blank: '%{attribute} を入力してください。'
+            detail:
+              format: '%{message}'
+              blank: '%{attribute} を入力してください。'
+            deadline:
+              format: '%{message}'
+              blank: '%{attribute} を入力してください。'

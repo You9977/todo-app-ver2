@@ -1,2 +1,48 @@
 // @import "bootstrap-sprockets"; 
 @import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+@import "@fortawesome/fontawesome-free/scss/fontawesome";
+
+/* header */
+
+header {
+  margin-bottom: 20px;
+}
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.label {
+  width: 20%;
+}
+
+.field {
+  margin-bottom: 10px;
+}
+
+.btn {
+  float: right;
+  margin-bottom: 20px;
+}
+
+.btn-warning {
+  margin-top: 20px;
+}
+
+.table thead th a {    
+  display: inline-block;
+  color: white;
+  font-size: 10px;
+  text-decoration: none;
+  margin-left: 10px;
+}

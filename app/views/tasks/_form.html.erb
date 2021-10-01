@@ -1,0 +1,24 @@
+<div class="container">
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+
+  <%= form_with model: @task do |f|  %>
+    <%= render 'shared/error_messages' %>
+
+    <%= f.label :title, "ToDo名:" %>
+    <%= f.text_field :title, class: "form-control" %>
+
+    <%= f.label :category, "分類:" %>
+    <%= f.text_field :category, class: "form-control" %>
+
+    <%= f.label :detail, "詳細:", cols: 10 %><%=  %>
+    <%= f.text_area :detail, cols: 40, rows: 5, class: "form-control", placeholder: "200文字以内で入力してください。" %>
+
+    <%= f.label :deadline, "期限:" %>
+    <%= f.date_field :deadline, value: Date.today, class: "form-control" %>
+
+    <%= f.submit class: "btn btn-warning" %>  
+  <% end %>
+  </div>
+</div>
+</div>

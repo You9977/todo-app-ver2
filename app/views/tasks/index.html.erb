@@ -1,14 +1,18 @@
 <div class="container">
-  <h1>ToDoリスト</h1>
-  <%= button_to 'New', { controller: 'tasks', action: 'new'}, { method: :get} %>
+  <div class="delete-btn">
+  <%= link_to '全て削除', { controller: 'tasks', action: 'destroy_all'},
+                         { method: :delete, data: { confirm: '本当に全て削除しますか?' },
+                           class: 'btn btn-danger'} %>
+  </div>
+
   <table class="table table-striped table-hover">
-    <thead>
+    <thead class="table-dark">
       <tr>
-        <th><%= "タスク名" %></th>
-        <th><%= "カテゴリー" %></th>
-        <th><%= "期限" %></th>
-        <th><%= "作成日" %></th>
-        <th><%= "更新日" %></th>
+        <th>ToDo名<%= sortable "title"," ▼ ▲ " %></th>
+        <th>分類  <%= sortable "category"," ▼ ▲ " %></th>
+        <th>期限  <%= sortable "deadline"," ▼ ▲ " %></th>
+        <th>作成日<%= sortable "created_at", " ▼ ▲ " %></th>
+        <th>更新日<%= sortable "updated_at", " ▼ ▲ " %></th>
         <th></th>
         <th></th>
       </tr>
@@ -18,13 +22,16 @@
       <tr>
         <td><%= link_to "#{task.title}", task_path(task) %></td>
         <td><%= task.category %></td>
-        <td><%= task.deadline %></td>
-        <td><%= task.created_at %></td>
-        <td><%= task.updated_at %></td>
-        <td><%= link_to '編集', edit_task_path(task) %></td>
-        <td><%= link_to '削除', task_path(task), method: :delete %></td>        
+        <td><%= l task.deadline,   format: :date if task.deadline.present? %></td>
+        <td><%= l task.created_at, format: :date %></td>
+        <td><%= l task.updated_at, format: :date %></td>
+        <td><%= link_to content_tag(:i, nil, class: "far fa-edit fa-lg"),
+                edit_task_path(task) %></td>
+        <td><%= link_to content_tag(:i, nil, class: "far fa-trash-alt fa-lg"),
+                task_path(task), method: :delete, data: { confirm: '削除しますか？'} %>
+              </td>
       </tr>
-    </tbody>
-    <% end %>
+      <% end %>
+    </tbody>    
   </table>
 </div>

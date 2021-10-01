@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module TodoApp
   class Application < Rails::Application
+    config.i18n.default_locale = :ja
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
@@ -17,6 +18,9 @@ module TodoApp
     # in config/environments, which are processed later.
     #
     # config.time_zone = "Central Time (US & Canada)"
+    config.time_zone = 'Asia/Tokyo'
     # config.eager_load_paths << Rails.root.join("extras")
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]
+    config.active_model.i18n_customize_full_message = true
   end
 end
