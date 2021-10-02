@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root to:  'tasks#index'
   resources :tasks
   delete 'tasks', to: 'tasks#destroy_all'
+  resources :users
 end
