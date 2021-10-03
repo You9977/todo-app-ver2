@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index    
-    @tasks = Task.all.where("user_id=?", current_user.id).order(sort_column + ' ' + sort_direction)
+    @tasks = Task.all.order(sort_column + ' ' + sort_direction)
   end
 
   def new
