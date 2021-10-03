@@ -25,6 +25,9 @@ gem 'uglifier'
 gem 'jquery-rails'
 gem 'bootstrap'
 gem 'rexml'
+gem 'autoprefixer-rails'
+gem 'rails-controller-testing'
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
