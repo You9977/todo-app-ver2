@@ -17,8 +17,11 @@ ActiveRecord::Schema.define(version: 2021_10_02_020126) do
     t.string "category"
     t.text "detail"
     t.datetime "deadline"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "created_at"], name: "index_tasks_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -28,4 +31,5 @@ ActiveRecord::Schema.define(version: 2021_10_02_020126) do
     t.string "password_digest"
   end
 
+  add_foreign_key "tasks", "users"
 end

@@ -1,7 +1,4 @@
 class UsersController < ApplicationController
-  def show
-    @user = User.find(params[:id])
-  end
 
   def new
     @user = User.new
@@ -12,7 +9,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:success] = "Welcome to the ToDo App!"
-      redirect_to root_url
+      redirect_to tasks_url(current_user)
     else
       render 'new'
     end

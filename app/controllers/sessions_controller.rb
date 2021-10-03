@@ -7,9 +7,9 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:session][:password])
       log_in user
-      redirect_to user_url(user)
+      redirect_to tasks_url(user)
     else
-      flash.now[:danger] = 'Invalid name/password combination'
+      flash.now[:danger] = '名前とパスワードの組み合わせが違います！'
       render 'new'
     end
   end

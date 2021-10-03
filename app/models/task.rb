@@ -1,7 +1,10 @@
 class Task < ApplicationRecord
+  belongs_to :user 
+
   validates :title, presence: true
   validates :detail, length: { maximum: 200 }
   validate  :deadline_should_be_future
+  validates :user_id, presence: true
   
   def deadline_should_be_future
     if deadline.present? && deadline < Date.yesterday

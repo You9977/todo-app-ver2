@@ -20,3 +20,20 @@ ja:
             deadline:
               format: '%{message}'
               blank: '%{attribute} を入力してください。'
+  activerecord:
+    models:
+      user:
+    attributes:
+      user:
+        name: 名前
+        password: パスワード        
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              format: '%{message}'
+              blank: '%{attribute} を入力してください。'
+            password:
+              format: '%{attribute} %{message}'
+              blank: 'を入力してください。'

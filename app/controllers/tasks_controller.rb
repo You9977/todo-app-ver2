@@ -1,8 +1,8 @@
-class TasksController < ApplicationController
+class TasksController < ApplicationController  
   helper_method :sort_column, :sort_direction
 
-  def index
-    @tasks = Task.all.order(sort_column + ' ' + sort_direction)    
+  def index    
+    @tasks = Task.all.where("user_id=?", current_user.id).order(sort_column + ' ' + sort_direction)
   end
 
   def new
@@ -17,11 +17,21 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
+  def update
+    @task = Task.find(params[:id])
+    if @task.update(task_params)
+      flash[:success] = "タスクを編集しました。"
+      redirect_to tasks_url(current_user)
+    else
+      render 'edit'
+    end
+  end
+
   def create
-    @task = Task.create(task_params)
+    @task = current_user.tasks.build(task_params)
     if @task.save
-      flash[:success] = "登録しました！"
-      redirect_to root_url
+      flash[:success] = "#{@task.title}を登録しました！"
+      redirect_to tasks_url(current_user)
     else
       render 'tasks/new'
     end
@@ -30,7 +40,8 @@ class TasksController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
-    redirect_to root_url
+    flash[:success] = "#{@task.title}を削除しました！"
+    redirect_to tasks_url(current_user)
   end
 
   def destroy_all
@@ -38,13 +49,14 @@ class TasksController < ApplicationController
     @tasks.each do |task|
       task.destroy
     end
-    redirect_to root_url
+    flash[:success] = "全て削除しました！"
+    redirect_to tasks_url(current_user)
   end
 
   private
 
     def task_params
-      params.require(:task).permit(:title, :category , :detail, :deadline)
+      params.require(:task).permit(:title, :category , :detail, :deadline, :user_id)
     end
     
     def sort_direction
@@ -53,5 +65,12 @@ class TasksController < ApplicationController
   
     def sort_column
       Task.column_names.include?(params[:sort]) ? params[:sort] : "title"
+    end
+
+    def logged_in_user
+      unless logged_in?
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
     end
 end

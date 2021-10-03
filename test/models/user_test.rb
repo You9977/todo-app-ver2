@@ -34,4 +34,12 @@ class UserTest < ActiveSupport::TestCase
     @user.password = @user.password_confirmation = "a" * 5
     assert_not @user.valid?
   end
+
+  test "associated tasks should be destroyed" do
+    @user.save
+    @user.tasks.create!(title: "test")
+    assert_difference 'Task.count', -1 do
+      @user.destroy
+    end
+  end
 end
